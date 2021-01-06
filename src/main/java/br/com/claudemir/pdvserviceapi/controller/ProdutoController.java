@@ -1,11 +1,18 @@
 package br.com.claudemir.pdvserviceapi.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.claudemir.pdvserviceapi.domain.Produto;
+import br.com.claudemir.pdvserviceapi.dto.PageableDTO;
 import br.com.claudemir.pdvserviceapi.dto.ProdutoDTO;
 import br.com.claudemir.pdvserviceapi.service.BaseService;
 import br.com.claudemir.pdvserviceapi.service.ProdutoService;
@@ -33,6 +40,11 @@ public class ProdutoController extends AbstractController<Produto, Integer, Prod
 	@Override
 	protected Class<Produto> getEntityClass() {
 		return Produto.class;
+	}
+
+	@PostMapping(value = "/pesquisar")
+	public Page<Produto> pesquisar(HttpServletRequest request, @RequestBody PageableDTO dto, BindingResult result) {
+		return service.findByNomeContaining(dto);
 	}
 
 }
