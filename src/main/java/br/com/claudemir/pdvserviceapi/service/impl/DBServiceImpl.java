@@ -51,7 +51,10 @@ public class DBServiceImpl implements DBService {
 
 		Produto p1 = new Produto(null, "Feijão", 10.00, 5.00, 10, 2);
 		Produto p2 = new Produto(null, "Arroz", 15.00, 7.00, 10, 2);
-		produtoRepository.saveAll(Arrays.asList(p1, p2));
+		Produto p3 = new Produto(null, "Açucar", 15.00, 7.00, 10, 2);
+		Produto p4 = new Produto(null, "Amaciante", 15.00, 7.00, 10, 2);
+		Produto p5 = new Produto(null, "Algodão", 15.00, 7.00, 10, 2);
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
 		Venda venda = new Venda(null, LocalDateTime.now(ZoneId.of("America/Manaus")), 0.0, caixa);
 
