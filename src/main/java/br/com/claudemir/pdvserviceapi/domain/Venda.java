@@ -14,20 +14,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@SequenceGenerator(name = "VENDA_SEQ", sequenceName = "VENDA_SEQ", allocationSize = 1)
 public class Venda implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VENDA_SEQ")
 	@Column(name = "venda_id")
 	private Integer id;
 
-	@Column(nullable = false, columnDefinition = "DATETIME")
+	@Column(nullable = false)
 	private LocalDateTime data;
 
 	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
@@ -76,7 +78,7 @@ public class Venda implements Serializable {
 
 	public Venda() {
 	}
-	
+
 	public Venda(Integer id) {
 		this.id = id;
 	}

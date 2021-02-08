@@ -11,19 +11,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name="SANGRIA_SEQ", sequenceName="SANGRIA_SEQ", allocationSize=1)
 public class Sangria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SANGRIA_SEQ")
+	@Column(name = "sangria_id")
 	private Integer id;
 
-	@Column(nullable = false, columnDefinition = "DATETIME")
+	@Column(nullable = false)
 	private LocalTime data;
 
-	@Column(nullable = false, precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(nullable = false, precision = 10, scale = 2)
 	private double valor;
 
 	@ManyToOne

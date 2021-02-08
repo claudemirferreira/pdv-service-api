@@ -11,26 +11,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@SequenceGenerator(name="PRODUTO_SEQ", sequenceName="PRODUTO_SEQ", allocationSize=1)
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PRODUTO_SEQ")
 	@Column(name = "produto_id")
 	private Integer id;
 
 	@Column(nullable = false, length = 100)
 	private String nome;
 
-	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(precision = 10, scale = 2)
 	private double precoVenda;
 
-	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(precision = 10, scale = 2)
 	private double precoCompra;
 	
 	private Integer estoque;

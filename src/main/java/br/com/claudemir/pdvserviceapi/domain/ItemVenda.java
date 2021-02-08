@@ -19,13 +19,13 @@ public class ItemVenda implements Serializable {
 	@EmbeddedId
 	private ItemVendaPK id = new ItemVendaPK();
 
-	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(precision = 10, scale = 2)
 	private double desconto;
 
 	@Column(nullable = false)
 	private Integer quantidade;
 
-	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(precision = 10, scale = 2)
 	private double preco;
 	
 	public ItemVenda() {

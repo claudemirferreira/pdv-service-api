@@ -13,20 +13,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@SequenceGenerator(name = "CAIXA_SEQ", sequenceName = "CAIXA_SEQ", allocationSize = 1)
 public class Caixa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAIXA_SEQ")
 	@Column(name = "caixa_id")
 	private Integer id;
 
-	@Column(nullable = false, columnDefinition = "DATETIME")
+	@Column(nullable = false)
 	private LocalDateTime data;
 
 	@ManyToOne
@@ -34,13 +36,13 @@ public class Caixa implements Serializable {
 	@JsonIgnore
 	private Usuario usuario;
 
-	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(precision = 10, scale = 2)
 	private double saldoInicial;
 
-	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(precision = 10, scale = 2)
 	private double totalApurado;
 
-	@Column(precision = 10, scale = 2, columnDefinition = "DECIMAL(10,2)")
+	@Column(precision = 10, scale = 2)
 	private double totalApuradoSistema;
 
 	@Column(nullable = false, length = 1)
